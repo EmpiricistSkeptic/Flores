@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día de las Flores Amarillas</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #fff9c4, #ffe082);
+        overflow: hidden;
+        color: #5a4a00;
+        text-align: center;
+    }
+
+    .container {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        animation: fadeIn 2s ease;
+    }
+
+    p {
+        font-size: 1.3em;
+        line-height: 1.6;
+        max-width: 600px;
+        margin: auto;
+        animation: fadeIn 3s ease;
+    }
+
+    .flower {
+        position: absolute;
+        font-size: 2rem;
+        animation: float 10s linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(100vh) rotate(0deg);
+        }
+        100% {
+            transform: translateY(-10vh) rotate(360deg);
+        }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px);}
+        to { opacity: 1; transform: translateY(0);}
+    }
+
+    .sun {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        font-size: 4rem;
+        animation: glow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #ffd54f; }
+        to { text-shadow: 0 0 30px #ffb300; }
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="sun">🌞</div>
+
+<div class="container">
+    <h1>🌻 Día de las Flores Amarillas 🌻</h1>
+
+    <p>
+        Vale, después de mi broma ruda...<br><br>
+        aquí tienes tus flores amarillas virtuales 🌻<br><br>
+        Porque una mujer tan increíble como tú no puede quedarse sin su sol en este día.<br><br>
+        Disfruta tu cena, mereces un descanso 💛
+    </p>
+</div>
+
+<!-- Цветы -->
+<script>
+    const flowers = ["🌻", "🌼", "💛"];
+
+    for (let i = 0; i < 25; i++) {
+        let flower = document.createElement("div");
+        flower.className = "flower";
+        flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+
+        flower.style.left = Math.random() * 100 + "vw";
+        flower.style.animationDuration = (5 + Math.random() * 10) + "s";
+        flower.style.fontSize = (1 + Math.random() * 2) + "rem";
+
+        document.body.appendChild(flower);
+    }
+</script>
+
+</body>
+</html>
