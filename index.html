@@ -1,110 +1,588 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Día de las Flores Amarillas</title>
-
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #fff9c4, #ffe082);
-        overflow: hidden;
-        color: #5a4a00;
-        text-align: center;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Día de las Flores Amarillas</title>
+  <style>
+    :root{
+      --bg-1:#fffdf3;
+      --bg-2:#fff3b8;
+      --bg-3:#ffe46b;
+      --ink:#5a4600;
+      --ink-soft:#7a6200;
+      --glass: rgba(255,255,255,.28);
+      --glass-border: rgba(255,255,255,.45);
+      --shadow: 0 30px 80px rgba(128, 90, 0, .18);
+      --gold:#ffd54a;
+      --gold-2:#ffbf1f;
+      --gold-3:#ffed86;
+      --petal:#ffd94f;
+      --petal-2:#ffbf1f;
+      --leaf:#79b35a;
+      --leaf-2:#4f8c38;
+      --trunk:#9a5f2a;
+      --trunk-2:#6f411a;
     }
 
-    .container {
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-        padding: 20px;
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.95) 0 14%, rgba(255,255,255,0) 15%),
+        radial-gradient(circle at 80% 12%, rgba(255,255,255,.7) 0 8%, rgba(255,255,255,0) 9%),
+        radial-gradient(circle at 50% 0%, #fffef8 0%, #fff8cd 25%, #ffe77f 58%, #ffd85b 100%);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    h1 {
-        font-size: 3em;
-        margin-bottom: 20px;
-        animation: fadeIn 2s ease;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255,255,255,.22) 0 2px, transparent 3px),
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,.16) 0 2px, transparent 3px),
+        radial-gradient(circle at 70% 18%, rgba(255,255,255,.16) 0 2px, transparent 3px),
+        radial-gradient(circle at 85% 35%, rgba(255,255,255,.15) 0 2px, transparent 3px),
+        radial-gradient(circle at 20% 72%, rgba(255,255,255,.15) 0 2px, transparent 3px),
+        radial-gradient(circle at 65% 76%, rgba(255,255,255,.12) 0 2px, transparent 3px);
+      pointer-events: none;
+      filter: blur(.2px);
+      opacity: .7;
     }
 
-    p {
-        font-size: 1.3em;
-        line-height: 1.6;
-        max-width: 600px;
-        margin: auto;
-        animation: fadeIn 3s ease;
-    }
-
-    .flower {
-        position: absolute;
-        font-size: 2rem;
-        animation: float 10s linear infinite;
-        opacity: 0.8;
-    }
-
-    @keyframes float {
-        0% {
-            transform: translateY(100vh) rotate(0deg);
-        }
-        100% {
-            transform: translateY(-10vh) rotate(360deg);
-        }
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px);}
-        to { opacity: 1; transform: translateY(0);}
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
     }
 
     .sun {
-        position: absolute;
-        top: 30px;
-        right: 30px;
-        font-size: 4rem;
-        animation: glow 3s ease-in-out infinite alternate;
+      position: absolute;
+      top: 3.5vh;
+      right: 4vw;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 35%, #fff9db 0 18%, #ffeaa0 19% 30%, #ffd94d 31% 56%, #ffbf1f 57% 70%, rgba(255,191,31,.35) 71% 100%);
+      box-shadow:
+        0 0 0 18px rgba(255, 227, 118, .22),
+        0 0 70px rgba(255, 191, 31, .5),
+        0 0 140px rgba(255, 191, 31, .24);
+      animation: pulseSun 4.5s ease-in-out infinite;
+      z-index: 1;
     }
 
-    @keyframes glow {
-        from { text-shadow: 0 0 10px #ffd54f; }
-        to { text-shadow: 0 0 30px #ffb300; }
+    .sun::before,
+    .sun::after {
+      content: "";
+      position: absolute;
+      inset: -22px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 214, 85, .25);
+      filter: blur(.4px);
+      animation: ring 6s linear infinite;
+    }
+    .sun::after {
+      inset: -40px;
+      border-color: rgba(255, 214, 85, .14);
+      animation-duration: 8s;
+      animation-direction: reverse;
     }
 
-</style>
+    .stage {
+      position: relative;
+      width: min(1200px, 100%);
+      height: min(860px, 100%);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .tree-wrap {
+      position: absolute;
+      top: 2vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(760px, 96vw);
+      height: min(640px, 72vh);
+      filter: drop-shadow(0 28px 28px rgba(101, 63, 0, .18));
+    }
+
+    .tree-base-glow {
+      position: absolute;
+      left: 50%;
+      bottom: 24px;
+      width: 320px;
+      height: 70px;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at center, rgba(255, 227, 108, .65), rgba(255, 227, 108, 0) 70%);
+      filter: blur(14px);
+    }
+
+    .trunk {
+      position: absolute;
+      left: 50%;
+      bottom: 46px;
+      transform: translateX(-50%);
+      width: 96px;
+      height: 250px;
+      border-radius: 58px 58px 26px 26px;
+      background:
+        linear-gradient(90deg, #6b3f1a 0%, #9d6030 22%, #c07a3f 40%, #8c5124 62%, #5e3515 100%);
+      box-shadow:
+        inset 10px 0 18px rgba(255,255,255,.08),
+        inset -14px 0 22px rgba(0,0,0,.12);
+      z-index: 2;
+    }
+
+    .trunk::before {
+      content: "";
+      position: absolute;
+      left: -12px;
+      bottom: 110px;
+      width: 160px;
+      height: 24px;
+      border-radius: 16px;
+      background: linear-gradient(90deg, rgba(0,0,0,0), rgba(109, 65, 26, .35), rgba(0,0,0,0));
+      transform: rotate(-12deg);
+      opacity: .7;
+    }
+
+    .branch {
+      position: absolute;
+      bottom: 180px;
+      left: 50%;
+      width: 220px;
+      height: 18px;
+      transform-origin: center left;
+      border-radius: 999px;
+      background:
+        linear-gradient(90deg, var(--trunk-2), var(--trunk), #c07a3f);
+      box-shadow: inset 0 0 10px rgba(255,255,255,.08);
+      z-index: 1;
+    }
+    .branch::before,
+    .branch::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 14px;
+      border-radius: 999px;
+      background: inherit;
+      box-shadow: inherit;
+    }
+    .branch::before { top: -22px; left: 62px; transform: rotate(26deg); }
+    .branch::after  { top:  18px; left: 74px; transform: rotate(-22deg); }
+
+    .branch.b1 { transform: translateX(-50%) rotate(-58deg); width: 205px; bottom: 205px; }
+    .branch.b2 { transform: translateX(-50%) rotate(-28deg); width: 245px; bottom: 255px; }
+    .branch.b3 { transform: translateX(-50%) rotate(6deg);   width: 280px; bottom: 300px; }
+    .branch.b4 { transform: translateX(-50%) rotate(34deg);  width: 240px; bottom: 252px; }
+    .branch.b5 { transform: translateX(-50%) rotate(60deg);  width: 190px; bottom: 196px; }
+
+    .crown {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .flower {
+      position: absolute;
+      width: 56px;
+      height: 56px;
+      transform: translate(-50%, -50%) scale(var(--s, 1)) rotate(var(--r, 0deg));
+      filter:
+        drop-shadow(0 3px 6px rgba(126, 79, 0, .16))
+        drop-shadow(0 0 18px rgba(255, 214, 70, .14));
+      animation: flowerSway var(--d, 7s) ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .petal {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 20px;
+      height: 30px;
+      border-radius: 50% 50% 50% 50% / 64% 64% 36% 36%;
+      transform-origin: 50% 100%;
+      background:
+        linear-gradient(180deg, var(--gold-3), var(--petal) 44%, var(--petal-2) 100%);
+      box-shadow:
+        inset 0 -4px 8px rgba(255, 144, 0, .12),
+        inset 0  4px 10px rgba(255, 255, 255, .18);
+      margin-left: -10px;
+      margin-top: -28px;
+    }
+
+    .center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      margin-left: -9px;
+      margin-top: -9px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 35%, #fff2a6 0 15%, #ffdc5f 16% 46%, #e6a800 47% 100%);
+      box-shadow:
+        inset 0 2px 4px rgba(255,255,255,.35),
+        0 0 0 3px rgba(255, 231, 144, .18);
+    }
+
+    .bud {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 22px;
+      height: 22px;
+      margin-left: -11px;
+      margin-top: -11px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 40% 35%, #fff7cb 0 16%, #ffe16f 17% 50%, #f2b500 51% 100%);
+      box-shadow: inset 0 -2px 5px rgba(128, 76, 0, .18);
+    }
+
+    .leaf {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 24px;
+      height: 14px;
+      margin-left: -12px;
+      margin-top: -7px;
+      border-radius: 100% 0 100% 0;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.28), transparent 35%),
+        linear-gradient(180deg, var(--leaf), var(--leaf-2));
+      transform-origin: 50% 50%;
+      box-shadow: inset 0 0 7px rgba(255,255,255,.14);
+      opacity: .95;
+    }
+
+    .card {
+      position: absolute;
+      left: 50%;
+      bottom: 34px;
+      transform: translateX(-50%);
+      width: min(860px, 92vw);
+      padding: 30px 30px 28px;
+      border-radius: 30px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.22));
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 10;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.55), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(255, 225, 117, .22), transparent 34%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255, 241, 170, .65);
+      color: #7a5b00;
+      font-weight: 700;
+      letter-spacing: .3px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.55);
+      margin-bottom: 14px;
+    }
+
+    .title {
+      margin: 0 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 1.03;
+      color: #6a4f00;
+      text-shadow: 0 2px 0 rgba(255,255,255,.35);
+    }
+
+    .message {
+      margin: 0 auto;
+      max-width: 760px;
+      font-size: clamp(1.02rem, 1.85vw, 1.28rem);
+      line-height: 1.75;
+      color: var(--ink-soft);
+    }
+
+    .message strong {
+      color: #5f4600;
+      font-weight: 800;
+    }
+
+    .signature {
+      margin-top: 18px;
+      font-size: .96rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(95, 70, 0, .7);
+    }
+
+    .floating-petal {
+      position: absolute;
+      width: 16px;
+      height: 28px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      background: linear-gradient(180deg, #fff1a8, #ffd54a 48%, #ffbe1a 100%);
+      box-shadow: 0 0 12px rgba(255, 213, 74, .18);
+      opacity: .75;
+      filter: blur(.1px);
+      animation: drift linear infinite;
+      pointer-events: none;
+    }
+
+    .floating-petal::after {
+      content: "";
+      position: absolute;
+      inset: 5px 4px 10px 4px;
+      border-radius: inherit;
+      background: rgba(255,255,255,.22);
+      transform: rotate(18deg);
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.9);
+      box-shadow: 0 0 16px rgba(255,255,255,.8);
+      opacity: .7;
+      animation: twinkle 3.4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes pulseSun {
+      0%, 100% { transform: scale(1); filter: saturate(1); }
+      50% { transform: scale(1.05); filter: saturate(1.15); }
+    }
+
+    @keyframes ring {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    @keyframes flowerSway {
+      0%, 100% { transform: translate(-50%, -50%) scale(var(--s, 1)) rotate(calc(var(--r, 0deg) - 2deg)); }
+      50%      { transform: translate(-50%, -50%) scale(var(--s, 1)) rotate(calc(var(--r, 0deg) + 2deg)); }
+    }
+
+    @keyframes drift {
+      from {
+        transform: translate3d(var(--x0), 110vh, 0) rotate(0deg) scale(var(--scale));
+      }
+      to {
+        transform: translate3d(calc(var(--x0) + var(--dx)), -18vh, 0) rotate(360deg) scale(var(--scale));
+      }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: .18; transform: scale(.75); }
+      45%      { opacity: .95; transform: scale(1.1); }
+    }
+
+    @media (max-width: 700px) {
+      .sun { width: 84px; height: 84px; top: 2.5vh; right: 4vw; }
+      .tree-wrap { height: min(560px, 74vh); }
+      .card { padding: 22px 18px 20px; border-radius: 24px; bottom: 20px; }
+      .message { line-height: 1.62; }
+      .branch.b1, .branch.b2, .branch.b3, .branch.b4, .branch.b5 { opacity: .9; }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="scene">
+    <div class="sun"></div>
 
-<div class="sun">🌞</div>
+    <div class="stage">
+      <div class="tree-wrap" aria-hidden="true">
+        <div class="tree-base-glow"></div>
+        <div class="branch b1"></div>
+        <div class="branch b2"></div>
+        <div class="branch b3"></div>
+        <div class="branch b4"></div>
+        <div class="branch b5"></div>
+        <div class="trunk"></div>
+        <div class="crown" id="crown"></div>
+      </div>
 
-<div class="container">
-    <h1>🌻 Día de las Flores Amarillas 🌻</h1>
+      <div class="card">
+        <div class="badge">🌻 Día de las Flores Amarillas</div>
+        <h1 class="title">Flores amarillas para ti</h1>
+        <p class="message">
+          <strong>Vale, después de mi broma ruda...</strong><br />
+          aquí tienes tus flores amarillas virtuales. 🌻<br /><br />
+          Porque una mujer tan increíble como tú no может остаться sin su sol en este día.<br /><br />
+          Disfruta tu cena, mereces un descanso 💛
+        </p>
+        <div class="signature">with love • golden hour • virtual bouquet</div>
+      </div>
+    </div>
+  </div>
 
-    <p>
-        Vale, después de mi broma ruda...<br><br>
-        aquí tienes tus flores amarillas virtuales 🌻<br><br>
-        Porque una mujer tan increíble como tú no puede quedarse sin su sol en este día.<br><br>
-        Disfruta tu cena, mereces un descanso 💛
-    </p>
-</div>
+  <div id="fx"></div>
 
-<!-- Цветы -->
-<script>
-    const flowers = ["🌻", "🌼", "💛"];
+  <script>
+    const crown = document.getElementById('crown');
+    const fx = document.getElementById('fx');
 
-    for (let i = 0; i < 25; i++) {
-        let flower = document.createElement("div");
-        flower.className = "flower";
-        flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+    function makeFlower(x, y, scale = 1, rotate = 0, type = 'flower') {
+      const el = document.createElement('div');
+      el.className = type === 'leaf' ? 'leaf' : (type === 'bud' ? 'bud' : 'flower');
+      el.style.left = `${x}px`;
+      el.style.top = `${y}px`;
+      el.style.setProperty('--s', scale);
+      el.style.setProperty('--r', `${rotate}deg`);
+      el.style.setProperty('--d', `${5 + Math.random() * 6}s`);
 
-        flower.style.left = Math.random() * 100 + "vw";
-        flower.style.animationDuration = (5 + Math.random() * 10) + "s";
-        flower.style.fontSize = (1 + Math.random() * 2) + "rem";
-
-        document.body.appendChild(flower);
+      if (type === 'flower') {
+        const petals = 6;
+        for (let i = 0; i < petals; i++) {
+          const p = document.createElement('span');
+          p.className = 'petal';
+          p.style.transform = `translate(-50%, -50%) rotate(${i * (360 / petals)}deg) translateY(-18px)`;
+          el.appendChild(p);
+        }
+        const center = document.createElement('span');
+        center.className = 'center';
+        el.appendChild(center);
+      } else if (type === 'bud') {
+        el.innerHTML = '';
+      } else if (type === 'leaf') {
+        el.style.width = `${18 + Math.random() * 10}px`;
+        el.style.height = `${12 + Math.random() * 8}px`;
+        el.style.transform = `translate(-50%, -50%) scale(${scale}) rotate(${rotate}deg)`;
+      }
+      return el;
     }
-</script>
 
+    // Create a lush crown of yellow flowers arranged like a tree canopy.
+    const wrap = document.querySelector('.tree-wrap');
+    const W = wrap.clientWidth;
+    const H = wrap.clientHeight;
+
+    const centerX = W * 0.5;
+    const canopyTop = H * 0.16;
+    const canopyBottom = H * 0.68;
+
+    function addCanopyFlower(x, y, scale, rot, kind = 'flower') {
+      crown.appendChild(makeFlower(x, y, scale, rot, kind));
+    }
+
+    // Main canopy: dense dome made of flowers
+    for (let i = 0; i < 180; i++) {
+      const t = Math.random();
+      const angle = Math.random() * Math.PI * 2;
+
+      const rx = (W * 0.26) * (0.34 + Math.random() * 0.88);
+      const ry = (H * 0.28) * (0.25 + Math.random() * 0.95);
+
+      let x = centerX + Math.cos(angle) * rx * (0.55 + Math.random() * 0.6);
+      let y = canopyTop + Math.sin(angle) * ry * (0.5 + Math.random() * 0.55);
+
+      // carve a tree-like silhouette
+      const dy = (y - canopyTop) / (canopyBottom - canopyTop);
+      const widthFactor = 0.22 + (1 - Math.abs(dy * 2 - 1)) * 0.88;
+      x = centerX + (x - centerX) * widthFactor;
+      y = y + Math.max(0, (dy - 0.55)) * 18;
+
+      // avoid the trunk center a bit
+      const trunkGap = Math.abs(x - centerX) < 42 && y > H * 0.44;
+      if (trunkGap && Math.random() < 0.75) continue;
+
+      const scale = 0.62 + Math.random() * 0.58;
+      const rot = -18 + Math.random() * 36;
+      const kindRoll = Math.random();
+
+      if (kindRoll < 0.08) {
+        addCanopyFlower(x, y, scale, rot, 'bud');
+      } else if (kindRoll < 0.18) {
+        addCanopyFlower(x, y, scale * 0.95, rot, 'leaf');
+      } else {
+        addCanopyFlower(x, y, scale, rot, 'flower');
+      }
+    }
+
+    // Clusters on branches for a more organic look
+    const branchClusters = [
+      [W * 0.33, H * 0.40], [W * 0.39, H * 0.31], [W * 0.50, H * 0.27],
+      [W * 0.61, H * 0.31], [W * 0.67, H * 0.40], [W * 0.48, H * 0.44]
+    ];
+
+    branchClusters.forEach(([bx, by], idx) => {
+      for (let i = 0; i < 18; i++) {
+        const ox = (Math.random() - 0.5) * 120;
+        const oy = (Math.random() - 0.5) * 70;
+        const scale = 0.42 + Math.random() * 0.38;
+        const rot = -24 + Math.random() * 48;
+        const kind = Math.random() < 0.72 ? 'flower' : (Math.random() < 0.85 ? 'bud' : 'leaf');
+        addCanopyFlower(bx + ox, by + oy + idx * 2, scale, rot, kind);
+      }
+    });
+
+    // Floating petals in the sky
+    const floatingCount = 46;
+    for (let i = 0; i < floatingCount; i++) {
+      const p = document.createElement('div');
+      p.className = 'floating-petal';
+      const x0 = Math.random() * 100;
+      const dx = (-20 + Math.random() * 40).toFixed(2) + 'vw';
+      const duration = (10 + Math.random() * 16).toFixed(2) + 's';
+      const delay = (-Math.random() * 18).toFixed(2) + 's';
+      const scale = (0.55 + Math.random() * 0.95).toFixed(2);
+      p.style.setProperty('--x0', x0 + 'vw');
+      p.style.setProperty('--dx', dx);
+      p.style.setProperty('--scale', scale);
+      p.style.animationDuration = duration;
+      p.style.animationDelay = delay;
+      p.style.left = '0';
+      p.style.top = '0';
+      p.style.transform = 'translate3d(var(--x0),110vh,0)';
+      fx.appendChild(p);
+    }
+
+    // Sparkles around the sun and crown
+    for (let i = 0; i < 22; i++) {
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.style.left = `${10 + Math.random() * 80}vw`;
+      s.style.top = `${3 + Math.random() * 58}vh`;
+      s.style.animationDelay = `${Math.random() * 3.4}s`;
+      s.style.transform = `scale(${0.5 + Math.random() * 1.4})`;
+      fx.appendChild(s);
+    }
+
+    // Slight responsive adjustment on resize
+    window.addEventListener('resize', () => {
+      location.reload();
+    }, { once: true });
+  </script>
 </body>
 </html>
