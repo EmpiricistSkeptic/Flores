@@ -1,588 +1,782 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Día de las Flores Amarillas</title>
-  <style>
-    :root{
-      --bg-1:#fffdf3;
-      --bg-2:#fff3b8;
-      --bg-3:#ffe46b;
-      --ink:#5a4600;
-      --ink-soft:#7a6200;
-      --glass: rgba(255,255,255,.28);
-      --glass-border: rgba(255,255,255,.45);
-      --shadow: 0 30px 80px rgba(128, 90, 0, .18);
-      --gold:#ffd54a;
-      --gold-2:#ffbf1f;
-      --gold-3:#ffed86;
-      --petal:#ffd94f;
-      --petal-2:#ffbf1f;
-      --leaf:#79b35a;
-      --leaf-2:#4f8c38;
-      --trunk:#9a5f2a;
-      --trunk-2:#6f411a;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día de las Flores Amarillas 🌻</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap');
 
-    * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.95) 0 14%, rgba(255,255,255,0) 15%),
-        radial-gradient(circle at 80% 12%, rgba(255,255,255,.7) 0 8%, rgba(255,255,255,0) 9%),
-        radial-gradient(circle at 50% 0%, #fffef8 0%, #fff8cd 25%, #ffe77f 58%, #ffd85b 100%);
-      color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
+  :root {
+    --gold-deep:    #b8860b;
+    --gold-mid:     #d4a017;
+    --gold-bright:  #f5c518;
+    --gold-pale:    #fde68a;
+    --amber:        #f59e0b;
+    --amber-warm:   #f97316;
+    --cream:        #fffbeb;
+    --ivory:        #fef9f0;
+    --petal-1:      #fde047;
+    --petal-2:      #facc15;
+    --petal-3:      #fbbf24;
+    --center:       #92400e;
+    --center-dark:  #451a03;
+    --glow:         rgba(253, 224, 71, 0.55);
+    --sun-glow:     rgba(251, 191, 36, 0.35);
+  }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(circle at 10% 10%, rgba(255,255,255,.22) 0 2px, transparent 3px),
-        radial-gradient(circle at 30% 25%, rgba(255,255,255,.16) 0 2px, transparent 3px),
-        radial-gradient(circle at 70% 18%, rgba(255,255,255,.16) 0 2px, transparent 3px),
-        radial-gradient(circle at 85% 35%, rgba(255,255,255,.15) 0 2px, transparent 3px),
-        radial-gradient(circle at 20% 72%, rgba(255,255,255,.15) 0 2px, transparent 3px),
-        radial-gradient(circle at 65% 76%, rgba(255,255,255,.12) 0 2px, transparent 3px);
-      pointer-events: none;
-      filter: blur(.2px);
-      opacity: .7;
-    }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .scene {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: grid;
-      place-items: center;
-      isolation: isolate;
-    }
+  html { scroll-behavior: smooth; }
 
-    .sun {
-      position: absolute;
-      top: 3.5vh;
-      right: 4vw;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 35% 35%, #fff9db 0 18%, #ffeaa0 19% 30%, #ffd94d 31% 56%, #ffbf1f 57% 70%, rgba(255,191,31,.35) 71% 100%);
-      box-shadow:
-        0 0 0 18px rgba(255, 227, 118, .22),
-        0 0 70px rgba(255, 191, 31, .5),
-        0 0 140px rgba(255, 191, 31, .24);
-      animation: pulseSun 4.5s ease-in-out infinite;
-      z-index: 1;
-    }
+  body {
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 50% 0%, #fff7d1 0%, #fde68a 28%, #f59e0b 56%, #b45309 80%, #78350f 100%);
+    overflow-x: hidden;
+    font-family: 'Lato', sans-serif;
+    position: relative;
+  }
 
-    .sun::before,
-    .sun::after {
-      content: "";
-      position: absolute;
-      inset: -22px;
-      border-radius: 50%;
-      border: 2px solid rgba(255, 214, 85, .25);
-      filter: blur(.4px);
-      animation: ring 6s linear infinite;
-    }
-    .sun::after {
-      inset: -40px;
-      border-color: rgba(255, 214, 85, .14);
-      animation-duration: 8s;
-      animation-direction: reverse;
-    }
+  /* ─── SKY GLOW LAYER ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% -5%, rgba(255,249,180,0.95) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 50% 0%, rgba(255,220,50,0.5) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
-    .stage {
-      position: relative;
-      width: min(1200px, 100%);
-      height: min(860px, 100%);
-      display: grid;
-      place-items: center;
-      padding: 24px;
-    }
+  /* ─── SUN ─── */
+  .sun {
+    position: fixed;
+    top: -110px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%,
+      #fffde4 0%, #fde047 30%, #f59e0b 60%, #d97706 80%, transparent 100%);
+    box-shadow:
+      0 0 60px 30px rgba(253,224,71,0.7),
+      0 0 120px 80px rgba(245,158,11,0.45),
+      0 0 220px 140px rgba(217,119,6,0.25),
+      0 0 380px 240px rgba(180,83,9,0.12);
+    animation: sunPulse 6s ease-in-out infinite;
+    z-index: 1;
+  }
+  @keyframes sunPulse {
+    0%,100% { transform: translateX(-50%) scale(1);   box-shadow: 0 0 60px 30px rgba(253,224,71,0.7),0 0 120px 80px rgba(245,158,11,0.45),0 0 220px 140px rgba(217,119,6,0.25),0 0 380px 240px rgba(180,83,9,0.12); }
+    50%      { transform: translateX(-50%) scale(1.06); box-shadow: 0 0 80px 45px rgba(253,224,71,0.85),0 0 160px 100px rgba(245,158,11,0.55),0 0 280px 180px rgba(217,119,6,0.30),0 0 440px 280px rgba(180,83,9,0.15); }
+  }
 
-    .tree-wrap {
-      position: absolute;
-      top: 2vh;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(760px, 96vw);
-      height: min(640px, 72vh);
-      filter: drop-shadow(0 28px 28px rgba(101, 63, 0, .18));
-    }
+  /* ─── GROUND ─── */
+  .ground {
+    position: fixed;
+    bottom: 0;
+    left: 0; right: 0;
+    height: 38%;
+    background: linear-gradient(to top, #451a03 0%, #78350f 40%, #92400e 70%, transparent 100%);
+    z-index: 1;
+  }
+  .ground::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: 0; right: 0;
+    height: 60px;
+    background: radial-gradient(ellipse 120% 80% at 50% 100%, rgba(251,191,36,0.18) 0%, transparent 70%);
+  }
 
-    .tree-base-glow {
-      position: absolute;
-      left: 50%;
-      bottom: 24px;
-      width: 320px;
-      height: 70px;
-      transform: translateX(-50%);
-      background: radial-gradient(ellipse at center, rgba(255, 227, 108, .65), rgba(255, 227, 108, 0) 70%);
-      filter: blur(14px);
-    }
+  /* ─── SCENE WRAPPER ─── */
+  .scene {
+    position: relative;
+    min-height: 100vh;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 60px;
+  }
 
-    .trunk {
-      position: absolute;
-      left: 50%;
-      bottom: 46px;
-      transform: translateX(-50%);
-      width: 96px;
-      height: 250px;
-      border-radius: 58px 58px 26px 26px;
-      background:
-        linear-gradient(90deg, #6b3f1a 0%, #9d6030 22%, #c07a3f 40%, #8c5124 62%, #5e3515 100%);
-      box-shadow:
-        inset 10px 0 18px rgba(255,255,255,.08),
-        inset -14px 0 22px rgba(0,0,0,.12);
-      z-index: 2;
-    }
+  /* ══════════════════════════════════════
+     CSS FLOWER COMPONENTS
+  ══════════════════════════════════════ */
 
-    .trunk::before {
-      content: "";
-      position: absolute;
-      left: -12px;
-      bottom: 110px;
-      width: 160px;
-      height: 24px;
-      border-radius: 16px;
-      background: linear-gradient(90deg, rgba(0,0,0,0), rgba(109, 65, 26, .35), rgba(0,0,0,0));
-      transform: rotate(-12deg);
-      opacity: .7;
-    }
+  /* Generic petal shape */
+  .petal {
+    position: absolute;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform-origin: bottom center;
+  }
 
-    .branch {
-      position: absolute;
-      bottom: 180px;
-      left: 50%;
-      width: 220px;
-      height: 18px;
-      transform-origin: center left;
-      border-radius: 999px;
-      background:
-        linear-gradient(90deg, var(--trunk-2), var(--trunk), #c07a3f);
-      box-shadow: inset 0 0 10px rgba(255,255,255,.08);
-      z-index: 1;
-    }
-    .branch::before,
-    .branch::after {
-      content: "";
-      position: absolute;
-      width: 120px;
-      height: 14px;
-      border-radius: 999px;
-      background: inherit;
-      box-shadow: inherit;
-    }
-    .branch::before { top: -22px; left: 62px; transform: rotate(26deg); }
-    .branch::after  { top:  18px; left: 74px; transform: rotate(-22deg); }
+  /* ─── SUNFLOWER (large center-piece) ─── */
+  .sunflower-wrap {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
 
-    .branch.b1 { transform: translateX(-50%) rotate(-58deg); width: 205px; bottom: 205px; }
-    .branch.b2 { transform: translateX(-50%) rotate(-28deg); width: 245px; bottom: 255px; }
-    .branch.b3 { transform: translateX(-50%) rotate(6deg);   width: 280px; bottom: 300px; }
-    .branch.b4 { transform: translateX(-50%) rotate(34deg);  width: 240px; bottom: 252px; }
-    .branch.b5 { transform: translateX(-50%) rotate(60deg);  width: 190px; bottom: 196px; }
+  .sunflower {
+    position: relative;
+    flex-shrink: 0;
+  }
 
-    .crown {
-      position: absolute;
-      inset: 0;
-      z-index: 3;
-      pointer-events: none;
-    }
+  .sunflower .stem {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(to right, #4d7c0f, #65a30d, #4d7c0f);
+    border-radius: 4px;
+  }
 
-    .flower {
-      position: absolute;
-      width: 56px;
-      height: 56px;
-      transform: translate(-50%, -50%) scale(var(--s, 1)) rotate(var(--r, 0deg));
-      filter:
-        drop-shadow(0 3px 6px rgba(126, 79, 0, .16))
-        drop-shadow(0 0 18px rgba(255, 214, 70, .14));
-      animation: flowerSway var(--d, 7s) ease-in-out infinite;
-      transform-origin: center;
-    }
+  .sunflower .leaves {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+  }
+  .sunflower .leaf {
+    position: absolute;
+    border-radius: 50% 0 50% 0;
+    background: linear-gradient(135deg, #4d7c0f, #84cc16);
+    transform-origin: bottom left;
+  }
 
-    .petal {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 20px;
-      height: 30px;
-      border-radius: 50% 50% 50% 50% / 64% 64% 36% 36%;
-      transform-origin: 50% 100%;
-      background:
-        linear-gradient(180deg, var(--gold-3), var(--petal) 44%, var(--petal-2) 100%);
-      box-shadow:
-        inset 0 -4px 8px rgba(255, 144, 0, .12),
-        inset 0  4px 10px rgba(255, 255, 255, .18);
-      margin-left: -10px;
-      margin-top: -28px;
-    }
+  /* Petal ring generator via JS — placeholder divs */
+  .flower-head {
+    position: relative;
+    border-radius: 50%;
+  }
+  .flower-head .petal-ring {
+    position: absolute;
+    inset: 0;
+  }
+  .flower-head .fp {
+    position: absolute;
+    border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%;
+    transform-origin: 50% 100%;
+  }
+  .flower-head .disk {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%,
+      #a16207 0%, #78350f 40%, #451a03 75%, #1c0a00 100%);
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: inset 0 4px 12px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
+  }
+  /* seeds dots on disk */
+  .flower-head .disk::after {
+    content: '';
+    position: absolute;
+    inset: 15%;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255,255,255,0.08) 0%, transparent 50%),
+      repeating-radial-gradient(circle at 50% 50%, transparent 0%, transparent 12%, rgba(0,0,0,0.25) 13%, transparent 14%);
+  }
 
-    .center {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 18px;
-      height: 18px;
-      margin-left: -9px;
-      margin-top: -9px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 35% 35%, #fff2a6 0 15%, #ffdc5f 16% 46%, #e6a800 47% 100%);
-      box-shadow:
-        inset 0 2px 4px rgba(255,255,255,.35),
-        0 0 0 3px rgba(255, 231, 144, .18);
-    }
+  /* ─── TREE OF FLOWERS ─── */
+  .flower-tree {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tree-trunk {
+    background: linear-gradient(to right, #451a03, #6b3a14, #78350f, #6b3a14, #451a03);
+    border-radius: 6px 6px 8px 8px;
+    position: relative;
+    z-index: 2;
+  }
+  .tree-trunk::after {
+    content: '';
+    position: absolute;
+    top: 10%; left: 30%; right: 30%;
+    bottom: 0;
+    background: linear-gradient(to right, transparent, rgba(255,200,50,0.12), transparent);
+    border-radius: 4px;
+  }
+  .tree-branches {
+    position: relative;
+    z-index: 1;
+  }
+  .branch {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(to right, #451a03, #6b3a14, #451a03);
+    border-radius: 4px;
+    transform-origin: bottom center;
+  }
 
-    .bud {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 22px;
-      height: 22px;
-      margin-left: -11px;
-      margin-top: -11px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 40% 35%, #fff7cb 0 16%, #ffe16f 17% 50%, #f2b500 51% 100%);
-      box-shadow: inset 0 -2px 5px rgba(128, 76, 0, .18);
-    }
+  /* ─── FLOATING PETALS ─── */
+  .floating-petals { position: fixed; inset: 0; pointer-events: none; z-index: 10; overflow: hidden; }
+  .fpetal {
+    position: absolute;
+    width: 14px;
+    height: 20px;
+    border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%;
+    opacity: 0;
+    animation: petalFall linear infinite;
+  }
+  @keyframes petalFall {
+    0%   { transform: translateY(-20px) rotate(0deg) scale(1);   opacity: 0; }
+    10%  { opacity: 0.85; }
+    85%  { opacity: 0.7; }
+    100% { transform: translateY(100vh) rotate(720deg) scale(0.6); opacity: 0; }
+  }
 
-    .leaf {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 24px;
-      height: 14px;
-      margin-left: -12px;
-      margin-top: -7px;
-      border-radius: 100% 0 100% 0;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,.28), transparent 35%),
-        linear-gradient(180deg, var(--leaf), var(--leaf-2));
-      transform-origin: 50% 50%;
-      box-shadow: inset 0 0 7px rgba(255,255,255,.14);
-      opacity: .95;
-    }
+  /* ─── SPARKLES ─── */
+  .sparkles { position: fixed; inset: 0; pointer-events: none; z-index: 9; overflow: hidden; }
+  .sparkle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fffde4 0%, rgba(253,224,71,0.6) 50%, transparent 100%);
+    animation: sparklePop ease-in-out infinite;
+  }
+  @keyframes sparklePop {
+    0%,100% { transform: scale(0); opacity: 0; }
+    50%      { transform: scale(1); opacity: 1; }
+  }
 
-    .card {
-      position: absolute;
-      left: 50%;
-      bottom: 34px;
-      transform: translateX(-50%);
-      width: min(860px, 92vw);
-      padding: 30px 30px 28px;
-      border-radius: 30px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.22));
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      z-index: 10;
-      text-align: center;
-      overflow: hidden;
-    }
+  /* ─── LIGHT RAYS ─── */
+  .rays { position: fixed; top: -80px; left: 50%; transform: translateX(-50%); pointer-events: none; z-index: 1; }
+  .ray {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 3px;
+    transform-origin: bottom center;
+    background: linear-gradient(to top, transparent 0%, rgba(255,249,150,0.22) 60%, rgba(255,249,150,0.06) 100%);
+    animation: rayShimmer ease-in-out infinite;
+    border-radius: 2px;
+  }
+  @keyframes rayShimmer {
+    0%,100% { opacity: 0.5; }
+    50%      { opacity: 1; }
+  }
 
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,.55), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(255, 225, 117, .22), transparent 34%);
-      pointer-events: none;
-    }
+  /* ─── GLASS CARD ─── */
+  .card-wrap {
+    margin: 0 auto;
+    padding: 0 16px;
+    width: 100%;
+    max-width: 680px;
+    margin-top: 56px;
+    position: relative;
+    z-index: 20;
+    animation: cardReveal 1.8s cubic-bezier(0.22,1,0.36,1) both;
+    animation-delay: 0.6s;
+  }
+  @keyframes cardReveal {
+    from { opacity: 0; transform: translateY(48px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0)    scale(1); }
+  }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 18px;
-      border-radius: 999px;
-      background: rgba(255, 241, 170, .65);
-      color: #7a5b00;
-      font-weight: 700;
-      letter-spacing: .3px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.55);
-      margin-bottom: 14px;
-    }
+  .glass-card {
+    background: linear-gradient(135deg,
+      rgba(255,253,235,0.72) 0%,
+      rgba(255,248,200,0.58) 50%,
+      rgba(255,237,150,0.62) 100%);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border: 1.5px solid rgba(255,220,60,0.55);
+    border-radius: 28px;
+    padding: 52px 52px 48px;
+    box-shadow:
+      0 8px 40px rgba(180,83,9,0.22),
+      0 2px 0 rgba(255,255,255,0.55) inset,
+      0 -1px 0 rgba(180,83,9,0.15) inset,
+      0 0 0 1px rgba(255,220,60,0.25) inset,
+      0 30px 80px rgba(120,53,15,0.18);
+    position: relative;
+    overflow: hidden;
+  }
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,200,0.9), transparent);
+  }
+  .glass-card::after {
+    content: '';
+    position: absolute;
+    top: -60%; left: -30%;
+    width: 60%; height: 80%;
+    background: radial-gradient(ellipse, rgba(255,255,220,0.35) 0%, transparent 70%);
+    pointer-events: none;
+    border-radius: 50%;
+  }
 
-    .title {
-      margin: 0 0 14px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2rem, 4vw, 4rem);
-      line-height: 1.03;
-      color: #6a4f00;
-      text-shadow: 0 2px 0 rgba(255,255,255,.35);
-    }
+  /* corner decoration */
+  .corner-flower { position: absolute; font-size: 28px; opacity: 0.5; animation: cornerSway 5s ease-in-out infinite; }
+  .corner-flower.tl { top: 14px; left: 16px; animation-delay: 0s; }
+  .corner-flower.tr { top: 14px; right: 16px; animation-delay: 1.2s; transform: scaleX(-1); }
+  .corner-flower.bl { bottom: 14px; left: 16px; animation-delay: 2.4s; }
+  .corner-flower.br { bottom: 14px; right: 16px; animation-delay: 3.6s; transform: scaleX(-1); }
+  @keyframes cornerSway {
+    0%,100% { transform: rotate(-8deg) scale(1); }
+    50%      { transform: rotate(8deg) scale(1.1); }
+  }
+  .corner-flower.tr { transform: scaleX(-1); }
+  .corner-flower.tr:hover, .corner-flower.br { transform: scaleX(-1); }
 
-    .message {
-      margin: 0 auto;
-      max-width: 760px;
-      font-size: clamp(1.02rem, 1.85vw, 1.28rem);
-      line-height: 1.75;
-      color: var(--ink-soft);
-    }
+  /* Title */
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.35rem, 4.5vw, 2rem);
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.06em;
+    color: #78350f;
+    text-shadow: 0 1px 8px rgba(255,200,0,0.55), 0 2px 0 rgba(255,255,255,0.6);
+    margin-bottom: 6px;
+    line-height: 1.25;
+  }
+  .card-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+    font-style: italic;
+    text-align: center;
+    color: #92400e;
+    opacity: 0.8;
+    letter-spacing: 0.12em;
+    margin-bottom: 36px;
+  }
 
-    .message strong {
-      color: #5f4600;
-      font-weight: 800;
-    }
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(180,83,9,0.4), transparent);
+  }
+  .divider-icon { font-size: 18px; opacity: 0.7; }
 
-    .signature {
-      margin-top: 18px;
-      font-size: .96rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: rgba(95, 70, 0, .7);
-    }
+  /* Message */
+  .card-message {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.05rem, 3vw, 1.28rem);
+    line-height: 1.85;
+    color: #451a03;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 1;
+  }
+  .card-message em {
+    font-style: italic;
+    color: #92400e;
+  }
 
-    .floating-petal {
-      position: absolute;
-      width: 16px;
-      height: 28px;
-      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-      background: linear-gradient(180deg, #fff1a8, #ffd54a 48%, #ffbe1a 100%);
-      box-shadow: 0 0 12px rgba(255, 213, 74, .18);
-      opacity: .75;
-      filter: blur(.1px);
-      animation: drift linear infinite;
-      pointer-events: none;
-    }
+  /* Signature */
+  .card-signature {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+    font-style: italic;
+    text-align: right;
+    color: #78350f;
+    opacity: 0.75;
+    letter-spacing: 0.04em;
+  }
 
-    .floating-petal::after {
-      content: "";
-      position: absolute;
-      inset: 5px 4px 10px 4px;
-      border-radius: inherit;
-      background: rgba(255,255,255,.22);
-      transform: rotate(18deg);
-    }
+  /* ─── DATE BADGE ─── */
+  .date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(253,224,71,0.6), rgba(245,158,11,0.5));
+    border: 1px solid rgba(180,83,9,0.35);
+    border-radius: 100px;
+    padding: 6px 18px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: #78350f;
+    margin: 0 auto 32px;
+    display: table;
+  }
 
-    .sparkle {
-      position: absolute;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.9);
-      box-shadow: 0 0 16px rgba(255,255,255,.8);
-      opacity: .7;
-      animation: twinkle 3.4s ease-in-out infinite;
-      pointer-events: none;
-    }
+  /* ─── FOOTER ─── */
+  .footer {
+    text-align: center;
+    padding: 28px 16px 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.82rem;
+    color: rgba(255,248,220,0.55);
+    letter-spacing: 0.1em;
+    font-style: italic;
+    position: relative;
+    z-index: 20;
+    animation: fadeInUp 2s 2s both;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
-    @keyframes pulseSun {
-      0%, 100% { transform: scale(1); filter: saturate(1); }
-      50% { transform: scale(1.05); filter: saturate(1.15); }
-    }
-
-    @keyframes ring {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-
-    @keyframes flowerSway {
-      0%, 100% { transform: translate(-50%, -50%) scale(var(--s, 1)) rotate(calc(var(--r, 0deg) - 2deg)); }
-      50%      { transform: translate(-50%, -50%) scale(var(--s, 1)) rotate(calc(var(--r, 0deg) + 2deg)); }
-    }
-
-    @keyframes drift {
-      from {
-        transform: translate3d(var(--x0), 110vh, 0) rotate(0deg) scale(var(--scale));
-      }
-      to {
-        transform: translate3d(calc(var(--x0) + var(--dx)), -18vh, 0) rotate(360deg) scale(var(--scale));
-      }
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: .18; transform: scale(.75); }
-      45%      { opacity: .95; transform: scale(1.1); }
-    }
-
-    @media (max-width: 700px) {
-      .sun { width: 84px; height: 84px; top: 2.5vh; right: 4vw; }
-      .tree-wrap { height: min(560px, 74vh); }
-      .card { padding: 22px 18px 20px; border-radius: 24px; bottom: 20px; }
-      .message { line-height: 1.62; }
-      .branch.b1, .branch.b2, .branch.b3, .branch.b4, .branch.b5 { opacity: .9; }
-    }
-  </style>
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 560px) {
+    .glass-card { padding: 38px 28px 36px; border-radius: 22px; }
+    .card-title  { font-size: 1.25rem; }
+  }
+  @media (max-width: 380px) {
+    .glass-card { padding: 30px 20px 28px; }
+  }
+</style>
 </head>
 <body>
-  <div class="scene">
-    <div class="sun"></div>
 
-    <div class="stage">
-      <div class="tree-wrap" aria-hidden="true">
-        <div class="tree-base-glow"></div>
-        <div class="branch b1"></div>
-        <div class="branch b2"></div>
-        <div class="branch b3"></div>
-        <div class="branch b4"></div>
-        <div class="branch b5"></div>
-        <div class="trunk"></div>
-        <div class="crown" id="crown"></div>
+<!-- SUN -->
+<div class="sun"></div>
+
+<!-- LIGHT RAYS -->
+<div class="rays" id="rays"></div>
+
+<!-- GROUND -->
+<div class="ground"></div>
+
+<!-- FLOATING PETALS -->
+<div class="floating-petals" id="floatingPetals"></div>
+
+<!-- SPARKLES -->
+<div class="sparkles" id="sparkles"></div>
+
+<!-- MAIN SCENE -->
+<div class="scene">
+
+  <!-- FLOWER TREES (left and right) -->
+  <div id="treeLeft"  class="flower-tree" style="left:0; bottom:0; position:fixed;"></div>
+  <div id="treeRight" class="flower-tree" style="right:0; bottom:0; position:fixed;"></div>
+
+  <!-- SMALL FLOWERS SCATTERED -->
+  <div id="scatterFlowers" style="position:fixed;inset:0;pointer-events:none;z-index:3;"></div>
+
+  <!-- GLASS MESSAGE CARD -->
+  <div class="card-wrap">
+    <div class="glass-card">
+      <span class="corner-flower tl">🌻</span>
+      <span class="corner-flower tr">🌻</span>
+      <span class="corner-flower bl">🌼</span>
+      <span class="corner-flower br">🌼</span>
+
+      <h1 class="card-title">Día de las Flores Amarillas</h1>
+      <p class="card-subtitle">— 21 de septiembre —</p>
+
+      <div class="date-badge">✦ &nbsp; Con amor &nbsp; ✦</div>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-icon">🌻</span>
+        <div class="divider-line"></div>
       </div>
 
-      <div class="card">
-        <div class="badge">🌻 Día de las Flores Amarillas</div>
-        <h1 class="title">Flores amarillas para ti</h1>
-        <p class="message">
-          <strong>Vale, después de mi broma ruda...</strong><br />
-          aquí tienes tus flores amarillas virtuales. 🌻<br /><br />
-          Porque una mujer tan increíble como tú no может остаться sin su sol en este día.<br /><br />
-          Disfruta tu cena, mereces un descanso 💛
-        </p>
-        <div class="signature">with love • golden hour • virtual bouquet</div>
+      <p class="card-message">
+        [PUT YOUR TEXT HERE]
+      </p>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-icon">🌼</span>
+        <div class="divider-line"></div>
       </div>
+
+      <p class="card-signature">— Siempre tuyo 🌻</p>
     </div>
   </div>
 
-  <div id="fx"></div>
+  <footer class="footer">Día de las Flores Amarillas &nbsp;·&nbsp; Hecho con amor</footer>
+</div>
 
-  <script>
-    const crown = document.getElementById('crown');
-    const fx = document.getElementById('fx');
+<script>
+/* ═══════════════════════════════════════════
+   UTILITY
+═══════════════════════════════════════════ */
+const rand = (min, max) => Math.random() * (max - min) + min;
+const randInt = (min, max) => Math.floor(rand(min, max));
 
-    function makeFlower(x, y, scale = 1, rotate = 0, type = 'flower') {
-      const el = document.createElement('div');
-      el.className = type === 'leaf' ? 'leaf' : (type === 'bud' ? 'bud' : 'flower');
-      el.style.left = `${x}px`;
-      el.style.top = `${y}px`;
-      el.style.setProperty('--s', scale);
-      el.style.setProperty('--r', `${rotate}deg`);
-      el.style.setProperty('--d', `${5 + Math.random() * 6}s`);
+/* ═══════════════════════════════════════════
+   LIGHT RAYS
+═══════════════════════════════════════════ */
+(function buildRays() {
+  const container = document.getElementById('rays');
+  container.style.cssText = 'position:fixed;top:-60px;left:50%;transform:translateX(-50%);pointer-events:none;z-index:1;';
+  for (let i = 0; i < 18; i++) {
+    const angle = -85 + i * 10;
+    const length = rand(340, 700);
+    const delay  = rand(0, 4);
+    const dur    = rand(3, 7);
+    const ray = document.createElement('div');
+    ray.style.cssText = `
+      position:absolute;
+      bottom:0;
+      left:50%;
+      width:${rand(1.5,4)}px;
+      height:${length}px;
+      transform-origin:bottom center;
+      transform:rotate(${angle}deg);
+      background:linear-gradient(to top,transparent 0%,rgba(255,249,150,0.18) 60%,rgba(255,249,150,0.04) 100%);
+      animation:rayShimmer ${dur}s ease-in-out ${delay}s infinite;
+      border-radius:3px;
+    `;
+    container.appendChild(ray);
+  }
+})();
 
-      if (type === 'flower') {
-        const petals = 6;
-        for (let i = 0; i < petals; i++) {
-          const p = document.createElement('span');
-          p.className = 'petal';
-          p.style.transform = `translate(-50%, -50%) rotate(${i * (360 / petals)}deg) translateY(-18px)`;
-          el.appendChild(p);
-        }
-        const center = document.createElement('span');
-        center.className = 'center';
-        el.appendChild(center);
-      } else if (type === 'bud') {
-        el.innerHTML = '';
-      } else if (type === 'leaf') {
-        el.style.width = `${18 + Math.random() * 10}px`;
-        el.style.height = `${12 + Math.random() * 8}px`;
-        el.style.transform = `translate(-50%, -50%) scale(${scale}) rotate(${rotate}deg)`;
+/* ═══════════════════════════════════════════
+   CSS SUNFLOWER BUILDER
+═══════════════════════════════════════════ */
+function buildSunflower(size, petalCount, innerRatio, diskRatio) {
+  const head = document.createElement('div');
+  head.classList.add('flower-head');
+  head.style.cssText = `width:${size}px;height:${size}px;position:relative;`;
+
+  const colors = ['#fde047','#facc15','#fbbf24','#f59e0b','#fde68a'];
+
+  for (let i = 0; i < petalCount; i++) {
+    const angle = (360 / petalCount) * i;
+    const p = document.createElement('div');
+    p.classList.add('fp');
+    const pw = size * 0.28;
+    const ph = size * 0.42;
+    const cx = size / 2 - pw / 2;
+    const cy = size / 2 - ph * 0.9;
+    const col = colors[i % colors.length];
+    const shade = `hsl(${48 + (i % 3) * 4}, ${85 + (i % 2) * 8}%, ${60 + (i % 3) * 5}%)`;
+    p.style.cssText = `
+      width:${pw}px;
+      height:${ph}px;
+      left:${cx}px;
+      top:${cy}px;
+      background:radial-gradient(ellipse at 50% 20%, ${col} 0%, ${shade} 55%, #d97706 100%);
+      box-shadow:inset 0 2px 6px rgba(255,255,200,0.5), 0 2px 8px rgba(0,0,0,0.18);
+      transform:rotate(${angle}deg);
+      transform-origin:${pw/2}px ${ph * 0.9 + size / 2 - ph * 0.9}px;
+      position:absolute;
+    `;
+    head.appendChild(p);
+  }
+
+  const disk = document.createElement('div');
+  disk.classList.add('disk');
+  const ds = size * diskRatio;
+  disk.style.cssText = `width:${ds}px;height:${ds}px;top:50%;left:50%;transform:translate(-50%,-50%);`;
+  head.appendChild(disk);
+
+  return head;
+}
+
+/* ═══════════════════════════════════════════
+   FLOWER TREE
+═══════════════════════════════════════════ */
+function buildFlowerTree(side) {
+  const container = side === 'left' ? document.getElementById('treeLeft') : document.getElementById('treeRight');
+  const isMobile = window.innerWidth < 600;
+  const trunkH = isMobile ? 160 : 240;
+  const trunkW = isMobile ? 18 : 26;
+  const scale  = isMobile ? 0.65 : 1;
+
+  // Trunk
+  const trunk = document.createElement('div');
+  trunk.classList.add('tree-trunk');
+  trunk.style.cssText = `width:${trunkW}px;height:${trunkH}px;position:relative;z-index:2;`;
+  container.appendChild(trunk);
+
+  // Branch cluster
+  const branchWrap = document.createElement('div');
+  branchWrap.style.cssText = `position:absolute;bottom:${trunkH - 10}px;left:50%;transform:translateX(-50%);width:1px;height:1px;z-index:3;`;
+
+  const branchConfig = [
+    { angle: side === 'left' ? -42 : 42, length: 90 * scale, w: 10, petalCount: 12, fSize: 52 * scale, delay: 0 },
+    { angle: side === 'left' ? -68 : 68, length: 70 * scale, w: 8,  petalCount: 10, fSize: 44 * scale, delay: 0.4 },
+    { angle: side === 'left' ? -20 : 20, length: 80 * scale, w: 9,  petalCount: 11, fSize: 48 * scale, delay: 0.8 },
+    { angle: side === 'left' ? -55 : 55, length: 60 * scale, w: 7,  petalCount: 9,  fSize: 40 * scale, delay: 1.2 },
+    { angle: side === 'left' ? -85 : 85, length: 55 * scale, w: 7,  petalCount: 9,  fSize: 38 * scale, delay: 1.5 },
+  ];
+
+  branchConfig.forEach(cfg => {
+    const branch = document.createElement('div');
+    const rad    = cfg.angle * Math.PI / 180;
+    const endX   = Math.sin(rad) * cfg.length;
+    const endY   = -Math.cos(rad) * cfg.length;
+    branch.style.cssText = `
+      position:absolute;
+      bottom:0; left:0;
+      width:${cfg.w}px;
+      height:${cfg.length}px;
+      background:linear-gradient(to right,#451a03,#6b3a14,#451a03);
+      border-radius:4px 4px 2px 2px;
+      transform-origin:bottom center;
+      transform:rotate(${cfg.angle}deg);
+    `;
+    branchWrap.appendChild(branch);
+
+    // Flower on branch tip
+    const flowerWrap = document.createElement('div');
+    flowerWrap.style.cssText = `
+      position:absolute;
+      left:${endX - cfg.fSize/2}px;
+      top:${endY - cfg.fSize/2}px;
+      animation:branchSway ${rand(3,5).toFixed(1)}s ease-in-out ${cfg.delay}s infinite;
+    `;
+    const sf = buildSunflower(cfg.fSize, cfg.petalCount, 0.6, 0.38);
+    flowerWrap.appendChild(sf);
+    branchWrap.appendChild(flowerWrap);
+  });
+
+  // Top main flower
+  const topFlowerWrap = document.createElement('div');
+  const tfSize = 70 * scale;
+  topFlowerWrap.style.cssText = `
+    position:absolute;
+    left:${-tfSize/2}px;
+    top:${-tfSize - 8}px;
+    animation:branchSway 4s ease-in-out infinite;
+  `;
+  topFlowerWrap.appendChild(buildSunflower(tfSize, 14, 0.6, 0.36));
+  branchWrap.appendChild(topFlowerWrap);
+
+  container.appendChild(branchWrap);
+  container.style.cssText += `position:fixed;bottom:0;${side}:${isMobile ? 0 : 10}px;z-index:3;`;
+
+  // Add sway animation
+  if (!document.getElementById('swayKF')) {
+    const s = document.createElement('style');
+    s.id = 'swayKF';
+    s.textContent = `
+      @keyframes branchSway {
+        0%,100% { transform:rotate(-4deg); }
+        50%      { transform:rotate(4deg); }
       }
-      return el;
-    }
+    `;
+    document.head.appendChild(s);
+  }
+}
 
-    // Create a lush crown of yellow flowers arranged like a tree canopy.
-    const wrap = document.querySelector('.tree-wrap');
-    const W = wrap.clientWidth;
-    const H = wrap.clientHeight;
+buildFlowerTree('left');
+buildFlowerTree('right');
 
-    const centerX = W * 0.5;
-    const canopyTop = H * 0.16;
-    const canopyBottom = H * 0.68;
+/* ═══════════════════════════════════════════
+   SCATTERED SMALL FLOWERS
+═══════════════════════════════════════════ */
+(function scatterFlowers() {
+  const container = document.getElementById('scatterFlowers');
+  const positions = [
+    { x: '12%', y: '62%', size: 36 }, { x: '8%',  y: '74%', size: 28 },
+    { x: '18%', y: '70%', size: 32 }, { x: '22%', y: '80%', size: 22 },
+    { x: '78%', y: '65%', size: 34 }, { x: '85%', y: '76%', size: 26 },
+    { x: '70%', y: '72%', size: 30 }, { x: '90%', y: '82%', size: 20 },
+    { x: '50%', y: '82%', size: 24 }, { x: '42%', y: '78%', size: 18 },
+    { x: '58%', y: '80%', size: 20 },
+  ];
+  positions.forEach((pos, i) => {
+    const wrap = document.createElement('div');
+    wrap.style.cssText = `
+      position:absolute;
+      left:${pos.x};top:${pos.y};
+      animation:branchSway ${rand(3,6).toFixed(1)}s ease-in-out ${(i * 0.3).toFixed(1)}s infinite;
+    `;
+    wrap.appendChild(buildSunflower(pos.size, 8, 0.55, 0.38));
+    container.appendChild(wrap);
+  });
+})();
 
-    function addCanopyFlower(x, y, scale, rot, kind = 'flower') {
-      crown.appendChild(makeFlower(x, y, scale, rot, kind));
-    }
+/* ═══════════════════════════════════════════
+   FLOATING PETALS
+═══════════════════════════════════════════ */
+(function buildPetals() {
+  const container = document.getElementById('floatingPetals');
+  const petalColors = [
+    '#fde047','#facc15','#fbbf24','#f59e0b',
+    '#fde68a','#fef08a','#fef9c3','#fffbeb',
+  ];
+  for (let i = 0; i < 28; i++) {
+    const p = document.createElement('div');
+    p.classList.add('fpetal');
+    const col = petalColors[i % petalColors.length];
+    const size = rand(8, 20);
+    const left = rand(0, 100);
+    const dur  = rand(7, 18);
+    const delay = rand(-dur, 0);
+    const rot  = rand(0, 360);
+    const wobble = rand(-60, 60);
+    p.style.cssText = `
+      left:${left}%;
+      width:${size}px;
+      height:${size * 1.45}px;
+      background:radial-gradient(ellipse at 40% 30%, rgba(255,255,255,0.5) 0%, ${col} 50%, #d97706 100%);
+      box-shadow:0 1px 4px rgba(0,0,0,0.15);
+      transform:rotate(${rot}deg);
+      animation-duration:${dur}s;
+      animation-delay:${delay}s;
+      filter:drop-shadow(0 1px 3px rgba(180,83,9,0.3));
+    `;
+    container.appendChild(p);
+  }
+})();
 
-    // Main canopy: dense dome made of flowers
-    for (let i = 0; i < 180; i++) {
-      const t = Math.random();
-      const angle = Math.random() * Math.PI * 2;
+/* ═══════════════════════════════════════════
+   SPARKLES / LIGHT PARTICLES
+═══════════════════════════════════════════ */
+(function buildSparkles() {
+  const container = document.getElementById('sparkles');
+  for (let i = 0; i < 40; i++) {
+    const s = document.createElement('div');
+    s.classList.add('sparkle');
+    const size = rand(2, 9);
+    const x    = rand(5, 95);
+    const y    = rand(5, 90);
+    const dur  = rand(1.5, 5);
+    const delay = rand(0, dur);
+    s.style.cssText = `
+      left:${x}%;top:${y}%;
+      width:${size}px;height:${size}px;
+      animation-duration:${dur}s;
+      animation-delay:${delay}s;
+    `;
+    container.appendChild(s);
+  }
+})();
 
-      const rx = (W * 0.26) * (0.34 + Math.random() * 0.88);
-      const ry = (H * 0.28) * (0.25 + Math.random() * 0.95);
+/* ═══════════════════════════════════════════
+   MOUSE PARALLAX (subtle)
+═══════════════════════════════════════════ */
+document.addEventListener('mousemove', e => {
+  const cx = window.innerWidth  / 2;
+  const cy = window.innerHeight / 2;
+  const dx = (e.clientX - cx) / cx;
+  const dy = (e.clientY - cy) / cy;
+  document.querySelector('.sun').style.transform =
+    `translateX(calc(-50% + ${dx * 12}px)) translateY(${dy * 8}px)`;
+});
 
-      let x = centerX + Math.cos(angle) * rx * (0.55 + Math.random() * 0.6);
-      let y = canopyTop + Math.sin(angle) * ry * (0.5 + Math.random() * 0.55);
-
-      // carve a tree-like silhouette
-      const dy = (y - canopyTop) / (canopyBottom - canopyTop);
-      const widthFactor = 0.22 + (1 - Math.abs(dy * 2 - 1)) * 0.88;
-      x = centerX + (x - centerX) * widthFactor;
-      y = y + Math.max(0, (dy - 0.55)) * 18;
-
-      // avoid the trunk center a bit
-      const trunkGap = Math.abs(x - centerX) < 42 && y > H * 0.44;
-      if (trunkGap && Math.random() < 0.75) continue;
-
-      const scale = 0.62 + Math.random() * 0.58;
-      const rot = -18 + Math.random() * 36;
-      const kindRoll = Math.random();
-
-      if (kindRoll < 0.08) {
-        addCanopyFlower(x, y, scale, rot, 'bud');
-      } else if (kindRoll < 0.18) {
-        addCanopyFlower(x, y, scale * 0.95, rot, 'leaf');
-      } else {
-        addCanopyFlower(x, y, scale, rot, 'flower');
-      }
-    }
-
-    // Clusters on branches for a more organic look
-    const branchClusters = [
-      [W * 0.33, H * 0.40], [W * 0.39, H * 0.31], [W * 0.50, H * 0.27],
-      [W * 0.61, H * 0.31], [W * 0.67, H * 0.40], [W * 0.48, H * 0.44]
-    ];
-
-    branchClusters.forEach(([bx, by], idx) => {
-      for (let i = 0; i < 18; i++) {
-        const ox = (Math.random() - 0.5) * 120;
-        const oy = (Math.random() - 0.5) * 70;
-        const scale = 0.42 + Math.random() * 0.38;
-        const rot = -24 + Math.random() * 48;
-        const kind = Math.random() < 0.72 ? 'flower' : (Math.random() < 0.85 ? 'bud' : 'leaf');
-        addCanopyFlower(bx + ox, by + oy + idx * 2, scale, rot, kind);
-      }
-    });
-
-    // Floating petals in the sky
-    const floatingCount = 46;
-    for (let i = 0; i < floatingCount; i++) {
-      const p = document.createElement('div');
-      p.className = 'floating-petal';
-      const x0 = Math.random() * 100;
-      const dx = (-20 + Math.random() * 40).toFixed(2) + 'vw';
-      const duration = (10 + Math.random() * 16).toFixed(2) + 's';
-      const delay = (-Math.random() * 18).toFixed(2) + 's';
-      const scale = (0.55 + Math.random() * 0.95).toFixed(2);
-      p.style.setProperty('--x0', x0 + 'vw');
-      p.style.setProperty('--dx', dx);
-      p.style.setProperty('--scale', scale);
-      p.style.animationDuration = duration;
-      p.style.animationDelay = delay;
-      p.style.left = '0';
-      p.style.top = '0';
-      p.style.transform = 'translate3d(var(--x0),110vh,0)';
-      fx.appendChild(p);
-    }
-
-    // Sparkles around the sun and crown
-    for (let i = 0; i < 22; i++) {
-      const s = document.createElement('div');
-      s.className = 'sparkle';
-      s.style.left = `${10 + Math.random() * 80}vw`;
-      s.style.top = `${3 + Math.random() * 58}vh`;
-      s.style.animationDelay = `${Math.random() * 3.4}s`;
-      s.style.transform = `scale(${0.5 + Math.random() * 1.4})`;
-      fx.appendChild(s);
-    }
-
-    // Slight responsive adjustment on resize
-    window.addEventListener('resize', () => {
-      location.reload();
-    }, { once: true });
-  </script>
+/* ═══════════════════════════════════════════
+   CARD HOVER GLOW
+═══════════════════════════════════════════ */
+const card = document.querySelector('.glass-card');
+card.addEventListener('mousemove', e => {
+  const rect = card.getBoundingClientRect();
+  const x = ((e.clientX - rect.left) / rect.width)  * 100;
+  const y = ((e.clientY - rect.top)  / rect.height) * 100;
+  card.style.background = `
+    radial-gradient(ellipse at ${x}% ${y}%, rgba(255,255,220,0.85) 0%, rgba(255,248,200,0.6) 40%, rgba(255,237,150,0.55) 100%)
+  `;
+});
+card.addEventListener('mouseleave', () => {
+  card.style.background = '';
+});
+</script>
 </body>
 </html>
